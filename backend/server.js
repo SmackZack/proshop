@@ -6,17 +6,21 @@ import colors from 'colors'
 
 //Routes
 import productRoutes from './routes/productRoutes.js'
+import userRoutes from './routes/userRoutes.js'
 
 dotenv.config()
 
 connectDB()
 const app = express()
+app.use(express.json())
 
 app.get('/', (req, res) => {
     res.send("Api is running")
 })
-//Products
+
 app.use('/api/products', productRoutes)
+app.use('/api/users', userRoutes)
+
 //Error
 app.use(notFound)
 app.use(errorHandler)
